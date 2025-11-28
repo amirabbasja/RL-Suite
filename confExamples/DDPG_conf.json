@@ -1,0 +1,32 @@
+{
+  "name": "ANN_DDPG",
+  "algorithm": "DDPG",
+  "algorithm_options": {
+    "learning_rate": 0.001,
+    "gamma": 0.99,
+    "tau": 0.005,
+    "batch": 128,
+    "memorySize": 100000,
+    "nEpisodes": 1000,
+    "maxNumTimeSteps": 200,
+    "noise_std": 0.2,
+    "noise_decay": 0.999
+  },
+  "env": "Pendulum-v1",
+  "env_options": {},
+  "network_actor": "ann",
+  "network_actor_options": { "hidden_layers": [256, 256] },
+  "network_critic": "ann",
+  "network_critic_options": { "hidden_layers": [256, 256] },
+  "continue_run": true,
+  "agents": 1,
+  "extra_info": "",
+  "max_run_time": 7200,
+  "stop_learning_at_win_percent": 100,
+  "train_max_time": 7200,
+  "upload_to_cloud": false,
+  "local_backup": true,
+  "debug": false,
+  "stop_condition": { "maxEpisodes": 1000, "maxAvgPoint": -200 },
+  "finished": false
+}
