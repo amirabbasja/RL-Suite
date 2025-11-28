@@ -1,0 +1,31 @@
+{
+  "name": "SNN_DQN",
+  "algorithm": "DQN",
+  "algorithm_options": {
+    "learning_rate": 0.001,
+    "gamma": 0.99,
+    "batch": 64,
+    "memorySize": 20000,
+    "startEbsilon": 1.0,
+    "endEbsilon": 0.01,
+    "decay": 0.995,
+    "numUpdateTS": 4,
+    "nEpisodes": 50000,
+    "maxNumTimeSteps": 1000
+  },
+  "env": "LunarLander-v3",
+  "env_options": {},
+  "network": "ann",
+  "network_options": { "hidden_layers": [64, 64] },
+  "continue_run": true,
+  "agents": 1,
+  "extra_info": "",
+  "max_run_time": 12600,
+  "stop_learning_at_win_percent": 80,
+  "train_max_time": 12600,
+  "upload_to_cloud": false,
+  "local_backup": true,
+  "debug": false,
+  "stop_condition": { "maxEpisodes": 50000, "maxAvgPoint": 200 },
+  "finished": false
+}
