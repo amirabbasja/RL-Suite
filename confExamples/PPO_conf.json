@@ -1,0 +1,42 @@
+{
+    "name": "SNN_DDQN",
+    "algorithm": "PPO",
+    "algorithm_options": {
+        "learning_rate": 0.0003,
+        "maxNumTimeSteps": 1000,
+        "gamma": 0.99,
+        "clip": 0.2,
+        "nUpdatesPerIteration": 10,
+        "timeStepsPerBatch": 4096,
+        "entropyCoef": 0.01,
+        "advantage_method": "gae",
+        "gae_lambda": 0.95,
+        "maxEpisodesCount": 150000
+    },
+    "env": "LunarLander-v3",
+    "env_options": {},
+    "network_actor": "ann",
+    "network_actor_options": {
+        "hidden_layers": [64, 64],
+        "snn_tSteps": 25,
+        "snn_beta": 0.95
+    },
+    "network_critic": "ann",
+    "network_critic_options": {
+        "hidden_layers": [64, 64]
+    },
+    "continue_run": true,
+    "agents": 1,
+    "extra_info": "",
+    "max_run_time": 12600, 
+    "stop_learning_at_win_percent": 80,
+    "train_max_time": 12600,
+    "upload_to_cloud": false,
+    "local_backup": true,
+    "debug": true,
+    "stop_condition": {
+        "maxEpisodes": 99999999999,
+        "maxAvgPoint": 99999999999
+    },
+    "finished": false
+}
