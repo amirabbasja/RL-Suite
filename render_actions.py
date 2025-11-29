@@ -4,7 +4,7 @@ import imageio
 import gymnasium as gym
 import time
 
-def render_episode_from_pickle(pickle_path, env_name, gif_path, episode=None, delay=0.0):
+def render_episode_from_pickle(pickle_path, env_name, gif_path, episode=None, delay=0.0, fps=None, frame_stride=1):
     # Load actions data
     with open(pickle_path, "rb") as f:
         data = pickle.load(f)
@@ -33,22 +33,24 @@ def render_episode_from_pickle(pickle_path, env_name, gif_path, episode=None, de
         raise ValueError("Selected entry does not contain 'actions'.")
 
     # Create env in rgb_array mode for GIF
-    env = gym.make(env_name, render_mode="human")
+    env = gym.make(env_name, render_mode="rgb_array")
     if seed is not None:
         env.reset(seed=seed)
     else:
         env.reset()
     print("Environment created")
 
-    writer = imageio.get_writer(gif_path)
+    duration = (1.0 / fps) if (fps and fps > 0) else (delay if delay and delay > 0 else 0.02)
+    writer = imageio.get_writer(gif_path, mode="I", duration=duration)
     try:
         from tqdm import tqdm
+        frame_idx = 0
         for a in tqdm(actions, desc="Rendering frames", unit="step"):
             _, _, terminated, truncated, _ = env.step(int(a))
             frame = env.render()
-            # writer.append_data(frame)
-
-
+            if frame_idx % frame_stride == 0:
+                writer.append_data(frame)
+            frame_idx += 1
             if terminated or truncated:
                 break
     finally:
@@ -60,4 +62,4 @@ if __name__ == "__main__":
     envName = "LunarLander-v3"
     gifLocToSave = "./runs_data/20/sampleRun.gif"
     episode = 471
-    render_episode_from_pickle(pickleLocation, envName, gifLocToSave, episode)
+    render_episode_from_pickle(pickleLocation, envName, gifLocToSave, episode, frame_stride=2)
