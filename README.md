@@ -4,7 +4,11 @@
 
 ## Overview
 
+<div align="center">
+
 ![demo](src/sample_lunarLander.gif)
+
+</div>
 
 RL-Suite is a modular collection of reinforcement learning components to train and evaluate agents across various environments. It focuses on clear training workflows, configuration-driven experiments, and reproducible results.  
 Various algorithms are implemented in a way that they can be easily copy-pasted to your own projects. All of the implementations are self-contained and do not require any external dependencies, except for pyTorch. Furthermore, the training process is highly configurable, allowing for easy experimentation with different hyperparameters and environments. The training process supports continuation of previous runs, allowing users to pick up training where they left off.  
