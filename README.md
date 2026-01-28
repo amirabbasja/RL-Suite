@@ -77,7 +77,7 @@ To run the training, two files have to be availible and provided by the user:
     - **algorithm_options**: Options for the environemnt.
         - If the custom environment accepts any spacial parameters, they should be added here. Each key's name is the same as the argument name, and the value is the argument value.
         - Optionally, if observations are to be normalized before being passed to the network, add the key `normalizeObservations: true` to the algorithm_options. If no key is added, the observations will not be normalized.
-        - If you add the key `noramlizationFunction: <functionName>` to the algorithm_options, the observations will be normalized using the function `<functionName>`. If no functions are added, no normalization will take place. Bear in mind that `functionName` should either be supported by the suit, if not (and if you are using a custom environment), it should be a method of the environment class.
+        - If you add the key `noramlizationName: <ClassName>` to the algorithm_options, the observations will be normalized using `normalize(*args)` method of the `<ClassName>` class. If no classes are added, no normalization will take place. Bear in mind that `ClassName` should either be supported by the suit, if not (and if you are using a custom environment), it should be a class of the environment class which has a `normalize(*args)` function.
 
 
 It is important to know how the training process works, so the user (YOU) can understand the output and the behavior of the agent. The training process is done by running the `run.py` file with the desired configuration. The configuration can be passed in two ways:
@@ -112,4 +112,6 @@ This was all about starting the training process, but when will the training sto
 3. Add support for multiple agents
 4. Add support for costumization of the networks
 5. Add support for environmnets with continuous action spaces
-6. Add a section in the readme indicatig the supported: `environemnt`, `environemnt_options.noramlizationFunction`
+6. Add a section in the readme indicatig the supported: `env`, `env_options.noramlizationFunction`
+7. Add a test folder, testing each algorithm
+8. Split the utils.py file into multiple files
